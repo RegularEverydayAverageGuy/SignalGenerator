@@ -43,8 +43,6 @@ int savingPeriod = 1000;//V milisekundah
 int bufferOffset = 0;
 int bufferDuration = 10;
 
-std::atomic<bool> requestData = false;
-
 /********************************TRENUTNO PODPRTI SIGNALI*******************************/
 
 std::vector<std::shared_ptr<Signal>> signals{ 
@@ -61,7 +59,7 @@ std::mutex coutMutex;
 CommandInterpreter commandInterpreter;
 /*******************************PRESLIKAVA UAKZOV V AKCIJE******************************/
 typedef  std::function<void(float)> CommandAction;
-std::map<std::string, CommandAction> commandMapper;
+std::unordered_map <std::string, CommandAction> commandMapper;
 /************************************PODPRTE AKCIJE*************************************/
 void SetAmplitude(float amplitude)
 {
